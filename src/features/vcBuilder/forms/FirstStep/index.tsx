@@ -1,11 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem } from '@/components/ui/accordion';
-import Iphone15Pro from '@/components/ui/iphone-15-pro';
-import { VCard } from '@/components/VCard';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { Bell, LifeBuoy, Link2, LucideProps, Plus, ShieldCheck } from 'lucide-react';
+import { BookUser, Brush, Building2, Contact, LucideProps, MapPin, MessageCircle, Plus } from 'lucide-react';
 import { SelectThemeColor } from './SelectThemeColor';
-import { useFormContext } from 'react-hook-form';
-import { IVCardData } from '@/interfaces/VCard.interface';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { PreviewVCardForm } from '../../PreviewVCardForm';
 import { ContactInformationForm } from './ContactInformationForm';
@@ -22,42 +18,42 @@ const items: {
 }[] = [
   {
     id: '1',
-    icon: Link2,
+    icon: Brush,
     title: 'Diseño',
     sub: 'Elija un tema cromático para su página.',
     content: <SelectThemeColor />,
   },
   {
     id: '2',
-    icon: Bell,
+    icon: Contact,
     title: 'Información personal',
     sub: 'Introduzca su información.',
     content: <PersonalInfoForm />
   },
   {
     id: '3',
-    icon: ShieldCheck,
+    icon: BookUser,
     title: 'Información de contacto',
     sub: 'Introduzca la información de contacto que desea mostrar en su vCard.',
     content: <ContactInformationForm />
   },
   {
     id: '4',
-    icon: LifeBuoy,
+    icon: MapPin,
     title: 'Ubicación',
     sub: 'Proporcione su dirección e información de ubicación.',
     content: <AddressInformationForm />
   },
   {
     id: '5',
-    icon: LifeBuoy,
+    icon: Building2,
     title: 'Detalles de la compañía',
     sub: 'Añada más información sobre el negocio al que pertenece.',
     content: <CompanyInformationForm />
   },
   {
     id: '6',
-    icon: LifeBuoy,
+    icon: MessageCircle,
     title: 'Redes sociales',
     sub: 'Añada enlaces de redes sociales a su página.',
     content: <SocialLinksInformationForm />

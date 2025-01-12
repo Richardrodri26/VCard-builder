@@ -84,19 +84,19 @@ const socialOptions: Record<ISocialLinksKeys, ISocialLinks> = {
     socialLink: ''
   },
   Tiktok: {
-    icon: 'Youtube',
+    icon: 'Tiktok',
     title: 'Tiktok',
     subTitle: 'Tiktok',
     socialLink: ''
   },
   Linkedin: {
-    icon: 'Instagram',
+    icon: 'Linkedin',
     title: 'Linkedin',
     subTitle: 'Linkedin',
     socialLink: ''
   },
   whatsapp: {
-    icon: 'Instagram',
+    icon: 'whatsapp',
     title: 'Whatsapp',
     subTitle: 'Whatsapp',
     socialLink: ''

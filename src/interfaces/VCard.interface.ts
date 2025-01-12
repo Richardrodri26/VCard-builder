@@ -1,10 +1,11 @@
+import { ITypeFile } from '@/components/FileUploader';
 import { colorThemes } from '@/features/vcBuilder/constants';
 
 export interface IVCardData {
   themeColor?: keyof typeof colorThemes;
   name?: string;
   subTitle?: string;
-  profileImageUrl?: string;
+  profileImage?: ITypeFile[];
   description?: string;
   phoneData?: IPhoneData[];
   emailData?: IEmailData[];

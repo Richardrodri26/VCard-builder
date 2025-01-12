@@ -5,6 +5,7 @@ import { IVCardData } from '@/interfaces/VCard.interface';
 import { useMemo } from 'react';
 import { colorThemes, socialLinkIcons } from '@/features/vcBuilder/constants';
 import { Separator } from '../ui/separator';
+import { getImageUrlFromFile } from '@/lib/utils';
 
 interface Props {
   data: IVCardData;
@@ -13,7 +14,7 @@ interface Props {
 export const VCard = ({ data }: Props) => {
   const currentTheme = useMemo(() => colorThemes[data.themeColor || '1'], [data.themeColor]);
 
-  const profileImageUrl = data?.profileImageUrl;
+  const profileImageUrl = data?.profileImage?.[0]?.nativeFile ? getImageUrlFromFile(data?.profileImage?.[0]?.nativeFile) : undefined;
 
   const phoneData = data?.phoneData || [];
   const emailData = data?.emailData || [];
@@ -39,7 +40,7 @@ export const VCard = ({ data }: Props) => {
           </Avatar>
         ) : null} */}
         <Avatar className="size-[106px] rounded-full">
-            <AvatarImage src={profileImageUrl} />
+            <AvatarImage src={profileImageUrl || undefined} />
             <AvatarFallback>NA</AvatarFallback>
           </Avatar>
 
@@ -82,7 +83,7 @@ export const VCard = ({ data }: Props) => {
             <div
               key={index}
               className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
-              <div className="bg-[#F9F9F9] p-[11px] rounded-full w-10 h-10">
+              <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
                 <PhoneIcon />
               </div>
               <div className="flex flex-col justify-center text-left w-full truncate rtl:text-right">
@@ -96,7 +97,7 @@ export const VCard = ({ data }: Props) => {
             <div
               key={index}
               className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
-              <div className="bg-[#F9F9F9] p-[11px] rounded-full w-10 h-10">
+              <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
                 <Mail />
               </div>
               <div className="flex flex-col justify-center text-left w-full truncate rtl:text-right">
@@ -110,7 +111,7 @@ export const VCard = ({ data }: Props) => {
             <div
               key={index}
               className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
-              <div className="bg-[#F9F9F9] p-[11px] rounded-full w-10 h-10">
+              <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
                 <Earth />
               </div>
               <div className="flex flex-col justify-center text-left w-full truncate rtl:text-right">
@@ -124,7 +125,7 @@ export const VCard = ({ data }: Props) => {
             <div
               key={index}
               className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
-              <div className="bg-[#F9F9F9] p-[11px] rounded-full w-10 h-10">
+              <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
                 <MapPin />
               </div>
               <div className="flex flex-col justify-center text-left w-full truncate rtl:text-right">
@@ -140,7 +141,7 @@ export const VCard = ({ data }: Props) => {
             <>
               <Separator />
               <div className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
-                <div className="bg-[#F9F9F9] p-[11px] rounded-full w-10 h-10">
+                <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
                   <Briefcase />
                 </div>
                 <div className="flex flex-col justify-center text-left w-full truncate rtl:text-right">

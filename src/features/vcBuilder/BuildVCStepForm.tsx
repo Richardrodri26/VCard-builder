@@ -14,7 +14,7 @@ const { useStepper, steps } = defineStepper(
   },
   {
     id: '2',
-    title: 'Estilo del qr',
+    title: 'Estilo del QR',
     description: 'Enter your payment details',
   },
   { id: '3', title: 'Proceso completado', description: 'Checkout complete' }

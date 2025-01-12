@@ -1,4 +1,5 @@
 import { SidebarProvider } from '../ui/sidebar';
+import { Toaster } from '../ui/sonner';
 import { ConfirmDialogProvider } from './ConfirmDialogProvider';
 import { TanstackQueryProvider } from './TanstackQueryProvider';
 
@@ -11,6 +12,7 @@ export const Providers = ({ children }: Props) => {
     <TanstackQueryProvider>
       <ConfirmDialogProvider>
         <SidebarProvider>{children}</SidebarProvider>
+        <Toaster richColors />
       </ConfirmDialogProvider>
     </TanstackQueryProvider>
   );
