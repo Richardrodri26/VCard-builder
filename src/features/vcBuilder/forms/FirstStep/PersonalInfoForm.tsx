@@ -5,13 +5,12 @@ import { UploadFileFormContext } from '@/components/Form/InputFileForm';
 export const PersonalInfoForm = () => {
   return (
     <div>
-      <p>Imagen</p>
       <UploadFileFormContext
         title="Imagen de perfil"
         name="profileImage"
         dropzoneOpts={{
           accept: {
-            'image/*': ['.jpg', '.jpeg', '.png', '.gif'],
+            'image/*': ['.jpg', '.jpeg', '.png'],
           },
           maxFiles: 1,
           maxSize: 4 * 1024 * 1024,

@@ -6,6 +6,7 @@ export interface IVCardData {
   name?: string;
   subTitle?: string;
   profileImage?: ITypeFile[];
+  qrImage?: ITypeFile[];
   description?: string;
   phoneData?: IPhoneData[];
   emailData?: IEmailData[];

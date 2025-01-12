@@ -5,6 +5,9 @@ import React from 'react';
 import { PreviewModal } from './modals/PreviewModal';
 import { BasicFormProviderZod } from '@/components/Form';
 import { FirstStep } from './forms/FirstStep';
+import { SecondStep } from './forms/SecondStep';
+import { PreviewQRModal } from './modals/PreviewQRModal';
+import { ThirdStep } from './forms/ThirdStep';
 
 const { useStepper, steps } = defineStepper(
   {
@@ -67,8 +70,8 @@ export const BuildVCStepForm = () => {
           <div className="flex-1">
             {stepper.switch({
               1: () => <FirstStep />,
-              2: () => <>2</>,
-              3: () => <>3</>,
+              2: () => <SecondStep />,
+              3: () => <ThirdStep />,
             })}
           </div>
           {!stepper.isLast ? (
@@ -76,12 +79,14 @@ export const BuildVCStepForm = () => {
               <Button variant="secondary" onClick={stepper.prev} disabled={stepper.isFirst}>
                 Anterior
               </Button>
-              <PreviewModal />
+              {stepper.current.id === '1' ? <PreviewModal /> : null}
+              {stepper.current.id === '2' ? <PreviewQRModal /> : null}
 
               <Button onClick={stepper.next}>{stepper.isLast ? 'Completar' : 'Siguiente'}</Button>
             </div>
           ) : (
-            <Button onClick={stepper.reset}>Reset</Button>
+            // <Button onClick={stepper.reset}>Terminar</Button>
+            <Button className='mt-5'>Terminar</Button>
           )}
         </BasicFormProviderZod>
       </div>

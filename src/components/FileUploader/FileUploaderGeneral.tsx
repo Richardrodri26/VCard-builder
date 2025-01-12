@@ -3,6 +3,7 @@ import { DropzoneOptions } from 'react-dropzone';
 import { IExternalState } from '@/interfaces/general.interfaces';
 import { cn } from '@/lib/utils';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem, ITypeFile } from '.';
+import { Image } from 'lucide-react';
 
 // #region Config area
 
@@ -97,7 +98,7 @@ export const UploadFileGeneral = forwardRef<HTMLDivElement, IUploadFileGeneralPr
               <FileUploaderItem
                 key={index}
                 index={index}
-                className='inline-flex h-[58px] min-h-6 w-full min-w-[464px] cursor-default items-center justify-start gap-3 rounded-[5px] border border-[#2b2b2b] bg-white p-2 pr-[24px] hover:bg-white'
+                className='inline-flex h-[58px] min-h-6 w-full cursor-default items-center justify-start gap-3 rounded-[5px] border border-[#2b2b2b] bg-white p-2 pr-[24px] hover:bg-white'
                 aria-roledescription={`file ${index + 1} containing ${file.name}`}>
                 <FileUploaderContentItem file={file} />
               </FileUploaderItem>
@@ -131,7 +132,7 @@ const UploadFileTrigger = ({ filesNames, title, validFormats, hasFiles }: IUploa
         <div className='inline-flex items-center justify-start self-stretch'>
           <div className='flex h-10 shrink grow basis-0 items-start justify-start'>
             <FileInput containerClassName='w-fit' className='w-fit'>
-              <div className='flex h-[40px] items-center justify-start gap-2.5 rounded-bl-[5px] rounded-tl-[5px] border border-[#5336c9] bg-[#5336c9] p-2.5'>
+              <div className='flex h-[40px] items-center justify-start gap-2.5 rounded-bl-[5px] rounded-tl-[5px] border border-primary bg-primary p-2.5'>
                 <div className="font-['Work Sans'] text-base font-medium leading-[18.80px] text-white">Seleccionar archivo</div>
               </div>
             </FileInput>
@@ -182,6 +183,7 @@ const FileUploaderContentItem = ({ file }: IFileUploaderContentItemProps) => {
       <div className='flex h-10 shrink grow basis-0 items-center justify-start gap-2.5'>
         <div className='!mr-0 flex !h-[40px] !w-[40px] items-center justify-center border-none bg-transparent'>
           {/* <IconByExtension className='m-auto' extension={getFileExtension(file)} /> */}
+          <Image />
         </div>
 
         <div className='mr-2 inline-flex shrink grow basis-0 flex-col items-start justify-start'>
