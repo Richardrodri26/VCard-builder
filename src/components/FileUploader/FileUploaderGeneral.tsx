@@ -157,19 +157,19 @@ interface IFileUploaderContentItemProps {
 }
 
 const FileUploaderContentItem = ({ file }: IFileUploaderContentItemProps) => {
-  const getFileExtension = (file: ITypeFile): string => {
-    let fileExtension: string | undefined = undefined;
+  // const getFileExtension = (file: ITypeFile): string => {
+  //   let fileExtension: string | undefined = undefined;
 
-    // if (file?.fileInfo?.fileExtension) {
-    //   fileExtension = file?.fileInfo?.fileExtension;
-    // }
+  //   // if (file?.fileInfo?.fileExtension) {
+  //   //   fileExtension = file?.fileInfo?.fileExtension;
+  //   // }
 
-    // if (file?.nativeFile?.type) {
-    //   fileExtension = getExtensionFromFileName(file.nativeFile.name).substring(1);
-    // }
+  //   // if (file?.nativeFile?.type) {
+  //   //   fileExtension = getExtensionFromFileName(file.nativeFile.name).substring(1);
+  //   // }
 
-    return fileExtension || file.name;
-  };
+  //   return fileExtension || file.name;
+  // };
 
   // const getDownloadUrl = (fileInfo: ITypeFile) => {
   //   const url = fileInfo?.fileInfo?.url ? import.meta.env.VITE_URL_BACKEND_API + fileInfo?.fileInfo?.url.substring(1) : getDownloadURL(`${fileInfo?.fileInfo?.id}` || '');

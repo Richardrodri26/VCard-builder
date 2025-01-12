@@ -16,11 +16,10 @@ import {
   DropzoneOptions,
 } from "react-dropzone";
 import { toast } from "sonner";
-import { FileText, Trash2 as RemoveIcon, X } from "lucide-react";
+import { Trash2 as RemoveIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
-import { Progress } from "../ui/progress";
 
 type DirectionOptions = "rtl" | "ltr" | undefined;
 
@@ -383,58 +382,58 @@ export const FileInput = forwardRef<
 
 FileInput.displayName = "FileInput";
 
-interface FileCardProps {
-  file: File
-  onRemove: () => void
-  progress?: number
-}
+// interface FileCardProps {
+//   file: File
+//   onRemove: () => void
+//   progress?: number
+// }
 
-const FileCard: React.FC<FileCardProps> = ({ file, progress, onRemove }) => (
-  <div className="relative flex items-center gap-2.5">
-    <div className="flex flex-1 gap-2.5">
-      {isFileWithPreview(file) && <FilePreview file={file} />}
-      <div className="flex w-full flex-col gap-2">
-        <p className="line-clamp-1 text-sm font-medium text-foreground/80">
-          {file.name}
-        </p>
-        {/* <p className="text-xs text-muted-foreground">{formatBytes(file.size)}</p> */}
-        {progress && <Progress value={progress} />}
-      </div>
-    </div>
-    <Button
-      type="button"
-      variant="outline"
-      size="icon"
-      className="size-7"
-      onClick={onRemove}
-    >
-      <X className="size-4" />
-      <span className="sr-only">Remove file</span>
-    </Button>
-  </div>
-)
+// const FileCard: React.FC<FileCardProps> = ({ file, progress, onRemove }) => (
+//   <div className="relative flex items-center gap-2.5">
+//     <div className="flex flex-1 gap-2.5">
+//       {isFileWithPreview(file) && <FilePreview file={file} />}
+//       <div className="flex w-full flex-col gap-2">
+//         <p className="line-clamp-1 text-sm font-medium text-foreground/80">
+//           {file.name}
+//         </p>
+//         {/* <p className="text-xs text-muted-foreground">{formatBytes(file.size)}</p> */}
+//         {progress && <Progress value={progress} />}
+//       </div>
+//     </div>
+//     <Button
+//       type="button"
+//       variant="outline"
+//       size="icon"
+//       className="size-7"
+//       onClick={onRemove}
+//     >
+//       <X className="size-4" />
+//       <span className="sr-only">Remove file</span>
+//     </Button>
+//   </div>
+// )
 
-const isFileWithPreview = (
-  file: File
-): file is File & { preview: string } => "preview" in file && typeof file.preview === "string"
+// const isFileWithPreview = (
+//   file: File
+// ): file is File & { preview: string } => "preview" in file && typeof file.preview === "string"
 
-interface FilePreviewProps {
-  file: File & { preview: string }
-}
+// interface FilePreviewProps {
+//   file: File & { preview: string }
+// }
 
-const FilePreview: React.FC<FilePreviewProps> = ({ file }) => {
-  if (file.type.startsWith("image/")) {
-    return (
-      <img
-        src={file.preview}
-        alt={file.name}
-        width={48}
-        height={48}
-        className="aspect-square shrink-0 rounded-md object-cover"
-      />
-    )
-  }
+// const FilePreview: React.FC<FilePreviewProps> = ({ file }) => {
+//   if (file.type.startsWith("image/")) {
+//     return (
+//       <img
+//         src={file.preview}
+//         alt={file.name}
+//         width={48}
+//         height={48}
+//         className="aspect-square shrink-0 rounded-md object-cover"
+//       />
+//     )
+//   }
 
-  return <FileText className="size-10 text-muted-foreground" />
-}
+//   return <FileText className="size-10 text-muted-foreground" />
+// }
 

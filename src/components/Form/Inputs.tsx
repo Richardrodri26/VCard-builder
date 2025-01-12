@@ -410,7 +410,6 @@ interface IComboboxFormInterface extends InputFormBasicType {
 export const ComboboxForm = ({
   name,
   options,
-  className,
   description,
   label,
   placeholder,
