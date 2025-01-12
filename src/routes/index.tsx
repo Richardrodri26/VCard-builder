@@ -4,6 +4,7 @@ import { LoginPage } from "@/pages/LoginPage";
 import { VCardsHome } from "@/pages/VCardsHome";
 import { VCardLayout } from "@/components/Layouts/VCardLayout";
 import { VCardsNew } from "@/pages/VCardsNew";
+import { ViewVCardPage } from "@/pages/ViewVCard";
 
 export const appRouter = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const appRouter = createBrowserRouter([
       {
         path: routerPaths.login.path,
         element: <LoginPage />,
+      },
+      {
+        path: routerPaths.viewVCard.path + "/:id",
+        element: <ViewVCardPage />,
       },
       {
         path: routerPaths.vcardsHome.path,

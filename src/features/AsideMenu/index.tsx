@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar';
+import { useNavigate } from 'react-router-dom';
 
 interface IMenuItem {
   title: string;
@@ -31,6 +32,12 @@ const items: IMenuItem[] = [
 ];
 
 export function AsideMenu({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const navigate = useNavigate();
+
+  const handleClick = (url: string) => {
+    navigate(url);
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarContent>
@@ -38,7 +45,7 @@ export function AsideMenu({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupLabel>Virtual Cards Builder</SidebarGroupLabel>
           <SidebarMenu>
             {items.map((item) => (
-              <SidebarMenuItem>
+              <SidebarMenuItem onClick={() => handleClick(item.url)} key={item.title}>
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>

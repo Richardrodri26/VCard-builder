@@ -9,12 +9,13 @@ export interface INavMenuOptions {
 
 export const routerPaths: Record<string, INavMenuOptions> = {
     login: { path: "/", label: "Inicio de sesión" },
+    viewVCard: { path: "/vcard", label: "Ver VCard" },
     register: { path: "/registrarse", label: "Registro de usuario" },
     vcardsHome: { path: "/vcards", label: "Mis VCards", children: [
         { path: "/new", label: "Nuevo VCard" },
     ] },
     
-}
+} as const
 
 
 /*------------------------------  Functions ------------------------------------------*/

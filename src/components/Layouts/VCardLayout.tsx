@@ -7,7 +7,7 @@ export const VCardLayout = () => {
     <div className="flex w-full">
       <AsideMenu />
       <SidebarInset>
-        <div className="flex items-center fixed top-1 left-2 z-10 bg-white">
+        <div className="flex items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />
         </div>
         <div className="px-4 h-[calc(100%-28px)] container mx-auto">

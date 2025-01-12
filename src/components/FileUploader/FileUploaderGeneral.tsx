@@ -145,7 +145,7 @@ const UploadFileTrigger = ({ filesNames, title, validFormats, hasFiles }: IUploa
 
       {
         ((validFormats?.allExtensionsValid?.length || 0) > 0 && !hasFiles)
-          ? <p>Soporta los siguientes formatos: {validFormats.validFormatsText}</p>
+          ? <p className='text-muted-foreground'>Soporta los siguientes formatos: {validFormats.validFormatsText}</p>
           : null
       }
       </div>
