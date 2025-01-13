@@ -12,6 +12,8 @@ export const colorThemes = {
   },
 } as const;
 
+export type colorThemesKeys = keyof typeof colorThemes;
+
 export const socialLinkIcons: Record<ISocialLinksKeys, JSX.Element> = {
   Facebook: <FacebookIcon />,
   Twitter: <XTwitterIcon />,
