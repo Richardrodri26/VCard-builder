@@ -1,6 +1,5 @@
 import Iphone15Pro from '@/components/ui/iphone-15-pro';
 import { IVCardData } from '@/interfaces/VCard.interface';
-import { getImageUrlFromFile } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 
 export const PreviewQrForm = () => {
@@ -8,7 +7,9 @@ export const PreviewQrForm = () => {
 
   const data = watch();
 
-  const qrImageUrl = data?.qrImage?.[0]?.nativeFile ? getImageUrlFromFile(data?.qrImage?.[0]?.nativeFile) : undefined;
+  const qrImageUrl = data?.qrImage?.[0]?.fileUrl
+    ? import.meta.env.VITE_APP_GRAPH + data?.qrImage?.[0]?.fileUrl
+    : undefined;
 
   return (
     <Iphone15Pro className="max-h-[400px] lg:max-h-[630px] mx-auto w-fit">

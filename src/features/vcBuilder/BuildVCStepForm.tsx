@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { defineStepper } from '@stepperize/react';
+import { defineStepper, Stepper } from '@stepperize/react';
 import React from 'react';
 import { PreviewModal } from './modals/PreviewModal';
 import { BasicFormProviderZod } from '@/components/Form';
@@ -9,6 +9,13 @@ import { SecondStep } from './forms/SecondStep';
 import { PreviewQRModal } from './modals/PreviewQRModal';
 import { ThirdStep } from './forms/ThirdStep';
 import { VCardSchemaType } from './schemas';
+import { useFormContext } from 'react-hook-form';
+import { IVCardData } from '@/interfaces/VCard.interface';
+import {useCreateCardFullMutation } from '@/domain/graphql';
+import { transformToCards } from './helpers';
+import { ToastyErrorGraph } from '@/lib/utils';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const { useStepper, steps } = defineStepper(
   {
@@ -25,7 +32,7 @@ const { useStepper, steps } = defineStepper(
 );
 
 interface Props {
-  defaultData?: VCardSchemaType
+  defaultData?: VCardSchemaType;
 }
 
 export const BuildVCStepForm = ({ defaultData }: Props) => {
@@ -71,9 +78,7 @@ export const BuildVCStepForm = ({ defaultData }: Props) => {
         </ol>
       </nav>
       <div className="space-y-4 flex flex-col flex-1">
-        <BasicFormProviderZod
-          defaultValue={defaultData}
-        >
+        <BasicFormProviderZod defaultValue={defaultData}>
           <div className="flex-1">
             {stepper.switch({
               1: () => <FirstStep />,
@@ -81,21 +86,81 @@ export const BuildVCStepForm = ({ defaultData }: Props) => {
               3: () => <ThirdStep />,
             })}
           </div>
-          {!stepper.isLast ? (
-            <div className="flex justify-end gap-4 mt-5">
-              <Button variant="secondary" onClick={stepper.prev} disabled={stepper.isFirst}>
-                Anterior
-              </Button>
-              {stepper.current.id === '1' ? <PreviewModal /> : null}
-              {stepper.current.id === '2' ? <PreviewQRModal /> : null}
-
-              <Button onClick={stepper.next}>{stepper.isLast ? 'Completar' : 'Siguiente'}</Button>
-            </div>
-          ) : (
-            // <Button onClick={stepper.reset}>Terminar</Button>
-            <Button className='mt-5'>Terminar</Button>
-          )}
+          <FooterButtons stepper={stepper as any} />
         </BasicFormProviderZod>
+      </div>
+    </div>
+  );
+};
+
+const FooterButtons = ({ stepper }: { stepper: Stepper }) => {
+  const { getValues } = useFormContext<IVCardData>();
+
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const [createCardMutation] = useCreateCardFullMutation();
+
+  const mutation = useMutation({
+    mutationFn: async (data: IVCardData) => {
+      try {
+        const dataToSend = transformToCards(data);
+        const response = await createCardMutation({
+          variables: {
+            input: dataToSend,
+          },
+        });
+
+        return response.data?.createCardFull;
+      } catch (error) {
+        ToastyErrorGraph(error as any);
+      }
+    },
+  });
+
+  const isFirtStep = stepper.current.id === '1';
+  const isSecondStep = stepper.current.id === '2';
+
+  const onNextStep = async () => {
+    if (isFirtStep) {
+      stepper.next();
+    }
+
+    if (isSecondStep) {
+      const data = await mutation.mutateAsync(getValues());
+
+      if (data) stepper.next();
+    }
+
+    if (stepper.isLast) {
+      queryClient.invalidateQueries({ queryKey: ['cards'] });
+      navigate('/vcards');
+    }
+  };
+
+  const onHoverLastStep = () => {
+    if (stepper.isLast) {
+      queryClient.invalidateQueries({ queryKey: ['cards'] });
+      
+    }
+  };
+
+  const disableNextButtonSecondStep = isSecondStep ? mutation.isPending : false;
+
+  return (
+    <div className="flex justify-end gap-4 mt-5">
+      {!stepper.isLast ? (
+        <Button variant="secondary" onClick={stepper.prev} disabled={stepper.isFirst}>
+          Anterior
+        </Button>
+      ) : null}
+      {isFirtStep ? <PreviewModal /> : null}
+      {isSecondStep ? <PreviewQRModal /> : null}
+
+      <div onMouseLeave={onHoverLastStep} onMouseEnter={onHoverLastStep}>
+        <Button disabled={disableNextButtonSecondStep} onClick={onNextStep}>
+          {stepper.isLast ? 'Terminar' : 'Siguiente'}
+        </Button>
       </div>
     </div>
   );

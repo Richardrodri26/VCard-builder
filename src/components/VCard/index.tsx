@@ -5,16 +5,17 @@ import { IVCardData } from '@/interfaces/VCard.interface';
 import { useMemo } from 'react';
 import { colorThemes, socialLinkIcons } from '@/features/vcBuilder/constants';
 import { Separator } from '../ui/separator';
-import { getImageUrlFromFile } from '@/lib/utils';
 
 interface Props {
   data: IVCardData;
 }
 
 export const VCard = ({ data }: Props) => {
-  const currentTheme = useMemo(() => colorThemes[data.themeColor || '1'], [data.themeColor]);
+  const currentTheme = useMemo(() => data.themeColor || colorThemes['1'], [data.themeColor]);
 
-  const profileImageUrl = data?.profileImage?.[0]?.nativeFile ? getImageUrlFromFile(data?.profileImage?.[0]?.nativeFile) : undefined;
+  const profileImageUrl = data?.profileImage?.[0]?.fileUrl
+    ? import.meta.env.VITE_APP_GRAPH + data?.profileImage?.[0]?.fileUrl
+    : undefined;
 
   const phoneData = data?.phoneData || [];
   const emailData = data?.emailData || [];
@@ -29,7 +30,7 @@ export const VCard = ({ data }: Props) => {
       style={{
         backgroundImage: `linear-gradient(to bottom, ${currentTheme.from}, ${currentTheme.to})`,
       }}
-      className="flex flex-col items-center bg-gradient-to-b h-full">
+      className="flex flex-col items-center bg-gradient-to-b min-h-screen h-full">
       {/* content */}
       <div className="flex flex-col items-center justify-center mt-[85px] w-full max-w-[700px] px-[16px] pb-[25px] relative">
         {/* Avatar */}
@@ -40,9 +41,9 @@ export const VCard = ({ data }: Props) => {
           </Avatar>
         ) : null} */}
         <Avatar className="size-[106px] rounded-full">
-            <AvatarImage src={profileImageUrl || undefined} />
-            <AvatarFallback>NA</AvatarFallback>
-          </Avatar>
+          <AvatarImage src={profileImageUrl || undefined} />
+          <AvatarFallback>NA</AvatarFallback>
+        </Avatar>
 
         {/* Name */}
         <div className="my-[32px] w-full break-all text-white text-center">
@@ -109,6 +110,7 @@ export const VCard = ({ data }: Props) => {
 
           {websiteData.map((item, index) => (
             <div
+              onClick={() => window.open(item.websiteUrl, '_blank')}
               key={index}
               className="flex flex-row space-x-[10px] xs:space-x-[16px] w-full cursor-pointer hover:opacity-80">
               <div className="bg-[#F9F9F9] p-[11px] rounded-full min-w-10 min-h-10 [&>svg]:size-5">
@@ -161,6 +163,7 @@ export const VCard = ({ data }: Props) => {
             {/* Item */}
             {socialLinksData.map((item, index) => (
               <div
+                onClick={() => window.open(item.socialLink, '_blank')}
                 key={index}
                 className="flex flex-row justify-between items-center p-[10px] rounded-[4px] bg-white w-full">
                 <div className="space-x-[8px] sm:space-x-[20px] flex flex-row items-center">

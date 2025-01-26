@@ -1,0 +1,24 @@
+
+query ValidateUserToken($validateTokenInput: ValidateTokenInput!) {
+  validateUserToken(validateTokenInput: $validateTokenInput) {
+    id
+    fullName
+  }
+}
+
+mutation CreateUser($createInput: CreateUserInput!) {
+  createUser(createInput: $createInput) {
+    id
+  }
+}
+
+mutation Signin($signinInput: SigninInput!) {
+  signin(signinInput: $signinInput) {
+    token
+    user {
+      id
+      fullName
+      status
+    }
+  }
+}

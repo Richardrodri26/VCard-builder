@@ -1,12 +1,16 @@
-import { ITypeFile } from '@/components/FileUploader';
-import { colorThemes } from '@/features/vcBuilder/constants';
+import { FileInfo } from '@/domain/graphql';
+
+export interface IThemeColors {
+  from: string;
+  to: string;
+}
 
 export interface IVCardData {
-  themeColor?: keyof typeof colorThemes;
+  themeColor?: IThemeColors;
   name?: string;
   subTitle?: string;
-  profileImage?: ITypeFile[];
-  qrImage?: ITypeFile[];
+  profileImage?: FileInfo[];
+  qrImage?: FileInfo[];
   description?: string;
   phoneData?: IPhoneData[];
   emailData?: IEmailData[];

@@ -1,10 +1,8 @@
 import confetti from 'canvas-confetti';
 import { PreviewVCardForm } from '../../PreviewVCardForm';
 import { useEffect } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 export const ThirdStep = () => {
-  const { getValues } = useFormContext();
 
   useEffect(() => {
     const makeConfetti = () => {
@@ -36,9 +34,8 @@ export const ThirdStep = () => {
 
       frame();
     };
-
     makeConfetti();
-    console.log('getValues()', getValues());
+
   }, []);
 
   return (

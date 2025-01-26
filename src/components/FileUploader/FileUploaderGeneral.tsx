@@ -138,7 +138,7 @@ const UploadFileTrigger = ({ filesNames, title, validFormats, hasFiles }: IUploa
             </FileInput>
 
             <div className='flex h-10 shrink grow basis-0 items-center justify-start rounded-br-[5px] rounded-tr-[5px] border border-neutral-200 bg-white p-2.5 text-muted-foreground'>
-              <div className="font-['Work Sans'] h-[19px] shrink grow basis-0 text-base font-normal leading-[18.80px] text-neutral-500">{filesNames} </div>
+              <div className="font-['Work Sans'] h-[19px] shrink grow basis-0 text-base font-normal leading-[18.80px] text-neutral-500 text-ellipsis line-clamp-1">{filesNames} </div>
             </div>
           </div>
         </div>

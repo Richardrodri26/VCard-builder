@@ -2,6 +2,7 @@ import { type DropzoneOptions } from 'react-dropzone';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ITypeFile } from '../FileUploader';
 import { UploadFileGeneral, type IUploadFileGeneralProps } from '../FileUploader/FileUploaderGeneral';
+import { useUploadBackendFiles } from '@/hooks/useUploadBackendFiles';
 
 interface IUploadFileFormContextProps extends Omit<IUploadFileGeneralProps, 'callback'> {
   name: string;
@@ -10,20 +11,22 @@ interface IUploadFileFormContextProps extends Omit<IUploadFileGeneralProps, 'cal
 export const UploadFileFormContext = ({ name, dropzoneOpts, ...rest }: IUploadFileFormContextProps) => {
   const { setValue, getValues, formState, trigger } = useFormContext();
 
+  const { handleUploadImage} = useUploadBackendFiles()
+
   const callback: (files: ITypeFile[] | null) => void = async files => {
     if (files) {
-      console.log('files UploadFileFormContext', files)
-      setValue(name, files, {
+      const fileToSave = await handleUploadImage(files.map(file => file.nativeFile)[0]);
+
+      setValue(name, [fileToSave], {
         shouldValidate: true,
       });
     }
   };
 
-  const defaultValues: ITypeFile[] = (getValues(name) as ITypeFile[])?.map(item => ({
-    name: item.name,
-    size: item.size,
-    // file: item,
-  }));
+
+  const defaultValues: ITypeFile[] = getValues(name)?.fileName ? [{
+    name: getValues(name)?.fileName,
+  }]: [];
 
   const dropzoneOptHookForm: DropzoneOptions = {
     ...dropzoneOpts,

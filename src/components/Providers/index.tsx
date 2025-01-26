@@ -1,5 +1,6 @@
 import { SidebarProvider } from '../ui/sidebar';
 import { Toaster } from '../ui/sonner';
+import { ProviderApollo } from './ApolloProvider';
 import { ConfirmDialogProvider } from './ConfirmDialogProvider';
 import { TanstackQueryProvider } from './TanstackQueryProvider';
 
@@ -10,10 +11,12 @@ interface Props {
 export const Providers = ({ children }: Props) => {
   return (
     <TanstackQueryProvider>
-      <ConfirmDialogProvider>
-        <SidebarProvider>{children}</SidebarProvider>
-        <Toaster richColors />
-      </ConfirmDialogProvider>
+      <ProviderApollo>
+        <ConfirmDialogProvider>
+          <SidebarProvider>{children}</SidebarProvider>
+          <Toaster richColors />
+        </ConfirmDialogProvider>
+      </ProviderApollo>
     </TanstackQueryProvider>
   );
 };

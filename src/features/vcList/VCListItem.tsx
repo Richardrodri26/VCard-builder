@@ -1,26 +1,39 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Pencil, Search } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Cards } from '@/domain/graphql';
+import { useQueryClient } from '@tanstack/react-query';
+import { Pencil, Search, Trash } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export const VCListItem = () => {
+interface Props {
+  data: Cards
+}
+
+export const VCListItem = ({ data }: Props) => {
   const navigate = useNavigate();
 
+  const queryClient = useQueryClient();
+
   const goToViewVCard = () => {
-    navigate('/vcard/1');
+
+    queryClient.setQueryData(['card', data.id], data)
+
+    navigate(`/vcard/${data.id}`);
   };
 
   const goToEditVCard = () => {
-    navigate('/vcards/edit/1');
+    navigate(`/vcards/edit/${data.id}`);
   };
 
   return (
-    <Card className="flex-1">
+    <Card className="">
       <CardHeader>
-        <CardTitle>Titulo</CardTitle>
-        <CardDescription>Descripción</CardDescription>
+        <CardTitle>{data?.title}</CardTitle>
+        <CardDescription>{data?.subTitle}</CardDescription>
       </CardHeader>
-      <CardContent className='space-x-2'>
+      <CardContent>
+        <div className='w-full flex gap-2 items-center flex-wrap'>
         <Button onClick={goToViewVCard} variant="outline">
           <Search />
           <span>Ver</span>
@@ -29,7 +42,18 @@ export const VCListItem = () => {
           <Pencil />
           <span>Editar</span>
         </Button>
+        <Button variant="outline">
+          <Trash />
+          <span>Eliminar</span>
+        </Button>
+        </div>
       </CardContent>
     </Card>
   );
 };
+
+export const VCListItemSkeleton = () =>{
+  return (
+    <Skeleton className='h-[164px] w-[348px]' />
+  )
+}
