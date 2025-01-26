@@ -10,7 +10,7 @@ export const vcardDataMock = {
       }
     }
   ],
-  "themeColor": "1",
+  "themeColor": "2",
   "profileImage": [
     {
       "name": "sell-icon.jpeg",

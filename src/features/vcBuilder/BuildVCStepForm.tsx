@@ -8,6 +8,7 @@ import { FirstStep } from './forms/FirstStep';
 import { SecondStep } from './forms/SecondStep';
 import { PreviewQRModal } from './modals/PreviewQRModal';
 import { ThirdStep } from './forms/ThirdStep';
+import { VCardSchemaType } from './schemas';
 
 const { useStepper, steps } = defineStepper(
   {
@@ -23,7 +24,11 @@ const { useStepper, steps } = defineStepper(
   { id: '3', title: 'Proceso completado', description: 'Checkout complete' }
 );
 
-export const BuildVCStepForm = () => {
+interface Props {
+  defaultData?: VCardSchemaType
+}
+
+export const BuildVCStepForm = ({ defaultData }: Props) => {
   const stepper = useStepper();
 
   return (
@@ -66,7 +71,9 @@ export const BuildVCStepForm = () => {
         </ol>
       </nav>
       <div className="space-y-4 flex flex-col flex-1">
-        <BasicFormProviderZod>
+        <BasicFormProviderZod
+          defaultValue={defaultData}
+        >
           <div className="flex-1">
             {stepper.switch({
               1: () => <FirstStep />,

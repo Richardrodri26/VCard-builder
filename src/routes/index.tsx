@@ -5,6 +5,7 @@ import { VCardsHome } from "@/pages/VCardsHome";
 import { VCardLayout } from "@/components/Layouts/VCardLayout";
 import { VCardsNew } from "@/pages/VCardsNew";
 import { ViewVCardPage } from "@/pages/ViewVCard";
+import { VCardsEdit } from "@/pages/VCardsEdit";
 
 export const appRouter = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ export const appRouter = createBrowserRouter([
             {
               path: '/vcards/new',
               element: <VCardsNew />
-            }
+            },
+            {
+              path: '/vcards/edit/:id',
+              element: <VCardsEdit />
+            },
         ]
       },
 

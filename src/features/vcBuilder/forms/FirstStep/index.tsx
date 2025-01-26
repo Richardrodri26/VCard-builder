@@ -89,7 +89,7 @@ export function FirstStep() {
                   />
                 </AccordionPrimitive.Trigger>
               </AccordionPrimitive.Header>
-              <AccordionContent className="ms-3 pb-2 ps-10 text-muted-foreground">{item.content}</AccordionContent>
+              <AccordionContent className="ms-3 pb-2 ps-10 text-muted-foreground pr-2">{item.content}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
