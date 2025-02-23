@@ -1,12 +1,11 @@
 import { Accordion, AccordionContent, AccordionItem } from '@/components/ui/accordion';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { BookUser, Brush, Building2, Contact, LucideProps, MapPin, MessageCircle, Plus } from 'lucide-react';
+import { BookUser, Brush, Contact, LucideProps, MapPin, MessageCircle, Plus } from 'lucide-react';
 import { SelectThemeColor } from './SelectThemeColor';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { PreviewVCardForm } from '../../PreviewVCardForm';
 import { ContactInformationForm } from './ContactInformationForm';
 import { AddressInformationForm } from './AddressInformationForm';
-import { CompanyInformationForm } from './CompanyInformationForm';
 import { SocialLinksInformationForm } from './SocialLinksInformationForm';
 
 const items: {
