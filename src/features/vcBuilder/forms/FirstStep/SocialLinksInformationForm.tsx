@@ -19,13 +19,13 @@ export const SocialLinksInformationForm = () => {
         {fields.map((field, index) => (
           <div key={field.id} className="flex flex-col w-full items-center justify-between gap-2 [&>div]:w-full">
             <RowForm>
-              {/* <InputForm name={`socialLinks[${index}].title`} label="Título" placeholder="Título" className="w-full" /> */}
-              <InputForm
+              <InputForm name={`socialLinks[${index}].title`} label="Título" placeholder="Título" className="w-full" />
+              {/* <InputForm
                 name={`socialLinks[${index}].subTitle`}
                 label="Subtítulo"
                 placeholder="Subtítulo"
                 className="w-full"
-              />
+              /> */}
             </RowForm>
             <InputForm
               name={`socialLinks[${index}].socialLink`}
