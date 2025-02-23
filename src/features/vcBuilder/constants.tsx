@@ -10,6 +10,10 @@ export const colorThemes = {
     from: '#123524',
     to: '#3E7B27',
   },
+  '3': {
+    from: '#A52A2A',
+    to: '#FF6347',
+  }
 } as const;
 
 export type colorThemesKeys = keyof typeof colorThemes;

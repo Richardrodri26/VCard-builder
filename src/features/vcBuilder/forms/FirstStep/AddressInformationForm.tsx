@@ -23,15 +23,15 @@ export const AddressInformationForm = () => {
             <RowForm className="flex flex-row">
               <InputForm name={`addressData.${index}.city`} label="Ciudad" placeholder="Agregar ciudad" />
 
-              <InputForm
+              {/* <InputForm
                 name={`addressData.${index}.postalCode`}
                 label="Código postal"
                 placeholder="Agregar código postal"
-              />
+              /> */}
             </RowForm>
             <RowForm className="flex flex-row">
               <InputForm name={`addressData.${index}.country`} label="País" placeholder="Agregar país" />
-              <InputForm name={`addressData.${index}.region`} label="Región" placeholder="Agregar región" />
+              {/* <InputForm name={`addressData.${index}.region`} label="Región" placeholder="Agregar región" /> */}
             </RowForm>
             <RowForm className="flex flex-row">
               <InputForm

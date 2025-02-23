@@ -44,13 +44,13 @@ const items: {
     sub: 'Proporcione su dirección e información de ubicación.',
     content: <AddressInformationForm />
   },
-  {
-    id: '5',
-    icon: Building2,
-    title: 'Detalles de la compañía',
-    sub: 'Añada más información sobre el negocio al que pertenece.',
-    content: <CompanyInformationForm />
-  },
+  // {
+  //   id: '5',
+  //   icon: Building2,
+  //   title: 'Detalles de la compañía',
+  //   sub: 'Añada más información sobre el negocio al que pertenece.',
+  //   content: <CompanyInformationForm />
+  // },
   {
     id: '6',
     icon: MessageCircle,
