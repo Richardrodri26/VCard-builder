@@ -14,21 +14,21 @@ export const ProductsSections = ({
   const secondaryColor = theme.to;
 
   return (
-    <Card className="bg-white rounded-2xl shadow-md p-4">
+    <Card className="bg-white rounded-2xl shadow-md p-4 min-w-[280px] w-fit">
       <CardContent className="space-y-4 pb-0">
         <div className="flex items-center gap-2 text-green-600">
-          <ClipboardList stroke={secondaryColor} />
-          <span className="font-semibold text-gray-800">{productName}</span>
+          <ClipboardList className='min-w-4 min-h-4' stroke={secondaryColor} />
+          <span className="font-semibold text-gray-800 flex-1">{productName}</span>
         </div>
 
         <div className="flex items-center gap-2 text-green-600">
-          <BadgeInfo stroke={secondaryColor} />
-          <p className="text-gray-700">{productDescription}</p>
+          <BadgeInfo className='min-w-4 min-h-4' stroke={secondaryColor} />
+          <p className="text-gray-700 flex-1">{productDescription}</p>
         </div>
 
         <div className="flex items-center gap-2 text-green-600">
-          <DollarSign stroke={secondaryColor} />
-          <span className="text-gray-800">{productPrice}</span>
+          <DollarSign className='min-w-4 min-h-4' stroke={secondaryColor} />
+          <span className="text-gray-800 flex-1">{productPrice}</span>
         </div>
       </CardContent>
     </Card>

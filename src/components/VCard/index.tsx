@@ -188,38 +188,29 @@ export const VCard = ({ data }: Props) => {
 
         {/* Servicios */}
 
-        {
-          servicesData.length > 0 
-          ? (
-            <div className='my-2 px-4'>
-              <p className="font-medium text-lg text-[#131D29] mb-1">Servicios</p>
-              {
-                servicesData.map((item, index) => (
-                  <ServicesSection theme={currentTheme} data={item} key={index} />
-                ))
-              }
+        {servicesData.length > 0 ? (
+          <div className="my-2 px-4">
+            <p className="font-medium text-lg text-[#131D29] mb-1">Servicios</p>
+            <div className="flex items-center snap-mandatory gap-4 max-w-full overflow-x-auto pb-2">
+              {servicesData.map((item, index) => (
+                <ServicesSection theme={currentTheme} data={item} key={index} />
+              ))}
             </div>
-          )
-          : null
-        }
+          </div>
+        ) : null}
 
         {/* Productos */}
 
-        {
-          productsData.length > 0 
-          ? (
-            <div className='mb-8 px-4'>
-              <p className="font-medium text-lg text-[#131D29] mb-1">Productos</p>
-              {
-                productsData.map((item, index) => (
-                  <ProductsSections theme={currentTheme} data={item} key={index} />
-                ))
-              }
+        {productsData.length > 0 ? (
+          <div className="mb-8 px-4">
+            <p className="font-medium text-lg text-[#131D29] mb-1">Productos</p>
+            <div className="flex items-center snap-mandatory gap-4 max-w-full overflow-x-auto pb-2">
+              {productsData.map((item, index) => (
+                <ProductsSections theme={currentTheme} data={item} key={index} />
+              ))}
             </div>
-          )
-          : null
-        }
-
+          </div>
+        ) : null}
 
         {/* Footer */}
         <div className="w-full px-4 pb-[30px] flex flex-1 items-end">
