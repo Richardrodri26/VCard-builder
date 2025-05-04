@@ -1,12 +1,14 @@
 import { Accordion, AccordionContent, AccordionItem } from '@/components/ui/accordion';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { BookUser, Brush, Contact, LucideProps, MapPin, MessageCircle, Plus } from 'lucide-react';
+import { BookUser, Brush, Contact, LucideProps, MapPin, MessageCircle, Plus, ShoppingBasket, ShoppingCart } from 'lucide-react';
 import { SelectThemeColor } from './SelectThemeColor';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { PreviewVCardForm } from '../../PreviewVCardForm';
 import { ContactInformationForm } from './ContactInformationForm';
 import { AddressInformationForm } from './AddressInformationForm';
 import { SocialLinksInformationForm } from './SocialLinksInformationForm';
+import { ProductsInformation } from './ProductsInformation';
+import { ServicesInformation } from './ServicesInformation';
 
 const items: {
   id: string;
@@ -56,6 +58,20 @@ const items: {
     title: 'Redes sociales',
     sub: 'Añada enlaces de redes sociales a su página.',
     content: <SocialLinksInformationForm />
+  },
+  {
+    id: '7',
+    icon: ShoppingCart,
+    title: 'Productos',
+    sub: 'Añada los productos que ofrece.',
+    content: <ProductsInformation />
+  },
+  {
+    id: '8',
+    icon: ShoppingBasket,
+    title: 'Servicios',
+    sub: 'Añada los servicios a su página.',
+    content: <ServicesInformation />
   },
 ];
 

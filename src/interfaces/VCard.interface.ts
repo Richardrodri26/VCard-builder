@@ -18,6 +18,8 @@ export interface IVCardData {
   addressData?: IAddressData[];
   companyData?: ICompanyData;
   socialLinks?: ISocialLinks[];
+  servicesData?: IServicesData[];
+  productsData?: IProductsData[];
 }
 
 export interface IPhoneData {
@@ -53,6 +55,18 @@ export interface ISocialLinks {
   title: string;
   socialLink: string;
   subTitle?: string;
+}
+
+export interface IServicesData  {
+  serviceName: string;
+  serviceDescription: string;
+  servicePrice: string;
+}
+
+export interface IProductsData {
+  productName: string;
+  productDescription: string;
+  productPrice: string;
 }
 
 export type ISocialLinksKeys = 'Facebook' | 'Twitter' | 'Instagram' | 'Youtube' | 'Tiktok' | 'Linkedin' | 'whatsapp';
