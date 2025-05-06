@@ -4,6 +4,7 @@ import { colorThemes } from '../../constants';
 import { cn } from '@/lib/utils';
 import { IThemeColors, IVCardData } from '@/interfaces/VCard.interface';
 import { ColorPicker } from '@/components/ColorPicker';
+import { RadioGroupForm, RadioGroupItemForm } from '@/components/Form/Inputs';
 
 export const SelectThemeColor = () => {
   const { setValue, watch } = useFormContext<IVCardData>();
@@ -60,6 +61,14 @@ export const SelectThemeColor = () => {
             value={watch('themeColor.to')}
           />
         </div>
+      </div>
+
+      <div className='mt-2'>
+
+          <RadioGroupForm name='orientation' label='Distribución de las tarjetas' className='mt-2'>
+          <RadioGroupItemForm value={'vertical'} label='Vertical' />
+          <RadioGroupItemForm value={'horizontal'} label='Horizontal' />
+          </RadioGroupForm>
       </div>
     </div>
   );

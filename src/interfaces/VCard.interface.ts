@@ -20,7 +20,11 @@ export interface IVCardData {
   socialLinks?: ISocialLinks[];
   servicesData?: IServicesData[];
   productsData?: IProductsData[];
+  orientation?: orientationType
+
 }
+
+export type orientationType = 'vertical' | 'horizontal'
 
 export interface IPhoneData {
   title?: string;

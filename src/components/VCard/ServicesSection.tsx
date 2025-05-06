@@ -10,7 +10,7 @@ interface ServiceCardProps {
 export const ServicesSection = ({ data: { serviceDescription, serviceName, servicePrice }, theme }: ServiceCardProps) => {
   const principalColor = theme.from;
   return (
-    <Card className="bg-white rounded-2xl shadow-md p-4 min-w-[280px] w-fit">
+    <Card className="bg-white rounded-2xl shadow-md p-4 min-w-[280px] min-h-[138px] h-full w-fit">
       <CardContent className="space-y-4 pb-0">
         <div className="flex items-center gap-2 text-blue-600">
           <ClipboardList className='min-w-4 min-h-4' stroke={principalColor} />

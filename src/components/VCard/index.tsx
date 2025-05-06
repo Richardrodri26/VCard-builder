@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { colorThemes, socialLinkIcons } from '@/features/vcBuilder/constants';
 import { ServicesSection } from './ServicesSection';
 import { ProductsSections } from './ProductsSections';
+import { cn } from '@/lib/utils';
 
 interface Props {
   data: IVCardData;
@@ -28,6 +29,10 @@ export const VCard = ({ data }: Props) => {
 
   const servicesData = data?.servicesData || [];
   const productsData = data?.productsData || [];
+
+  const isVertical = data?.orientation ? data?.orientation === 'vertical' : undefined;
+
+  console.log('isVertical :>> ', isVertical);
 
   return (
     <div
@@ -191,9 +196,16 @@ export const VCard = ({ data }: Props) => {
         {servicesData.length > 0 ? (
           <div className="my-2 px-4">
             <p className="font-medium text-lg text-[#131D29] mb-1">Servicios</p>
-            <div className="flex items-center snap-mandatory gap-4 max-w-full overflow-x-auto pb-2">
+            <div
+              className={cn(
+                'flex snap-mandatory gap-4 max-w-full overflow-x-auto pb-2',
+                isVertical ? 'flex-col' : 'flex-row' // Aseguramos que sea flex-row en horizontal
+              )}>
               {servicesData.map((item, index) => (
-                <ServicesSection theme={currentTheme} data={item} key={index} />
+                <div key={index} className={cn('flex-shrink-0 max-w-[280px]', isVertical ? 'w-full [&>*]:w-full max-w-full' : '')}>
+                  {/* Añadimos un contenedor para cada item */}
+                  <ServicesSection theme={currentTheme} data={item} />
+                </div>
               ))}
             </div>
           </div>
@@ -204,9 +216,16 @@ export const VCard = ({ data }: Props) => {
         {productsData.length > 0 ? (
           <div className="mb-8 px-4">
             <p className="font-medium text-lg text-[#131D29] mb-1">Productos</p>
-            <div className="flex items-center snap-mandatory gap-4 max-w-full overflow-x-auto pb-2">
+            <div
+              className={cn(
+                'flex snap-mandatory gap-4 max-w-full overflow-x-auto pb-2',
+                isVertical ? 'flex-col' : 'flex-row'
+              )}>
               {productsData.map((item, index) => (
-                <ProductsSections theme={currentTheme} data={item} key={index} />
+                <div key={index} className={cn('flex-shrink-0 max-w-[280px]', isVertical ? 'w-full [&>*]:w-full max-w-full' : '')}>
+                  {/* Añadimos un contenedor para cada item */}
+                  <ProductsSections theme={currentTheme} data={item} />
+                </div>
               ))}
             </div>
           </div>
